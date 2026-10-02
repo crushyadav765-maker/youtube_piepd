@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f0f0f" />
+    <meta
+      name="description"
+      content="PipeTube - a privacy-friendly YouTube front-end powered by the Piped and Invidious APIs. No ads, no tracking."
+    />
+    <title>PipeTube</title>
+    <script>
+      ;(function () {
+        try {
+          var raw = localStorage.getItem('pipedclone.settings.v1')
+          var theme = raw ? JSON.parse(raw).theme : 'dark'
+          var dark = theme === 'dark' || (theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark'
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>PipeTube needs JavaScript enabled to run.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
